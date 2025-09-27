@@ -39,7 +39,7 @@ export default function Hero() {
         alt="3D Spline"
         width={1200}
         height={600}
-        className="rounded-2xl shadow-2xl mt-12"
+        className="rounded-2xl shadow-2xl -mt-10"
       />
     </section>
   );

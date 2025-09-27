@@ -250,24 +250,26 @@ function Pagination({
   return (
     <div className="flex justify-center gap-2 mt-4">
       <button
-        className={`px-4 py-1 rounded-md ${
+        className={`px-4 py-1 rounded-md border transition-colors ${
           currentPage === 1
-            ? "border border-gray-200 bg-gray-100 text-gray-400"
-            : "text-gray-700 border border-[#9438FF]"
+            ? "bg-muted text-muted-foreground border-border cursor-not-allowed"
+            : "bg-card text-foreground border-primary hover:bg-muted"
         }`}
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
         Previous
       </button>
-      <span className="self-center text-sm">
+
+      <span className="self-center text-sm text-muted-foreground">
         Page {currentPage} of {totalPages}
       </span>
+
       <button
-        className={`px-4 py-1 rounded-md ${
+        className={`px-4 py-1 rounded-md border transition-colors ${
           currentPage === totalPages
-            ? "border border-gray-200 bg-gray-100 text-gray-400"
-            : "border border-[#9438FF]"
+            ? "bg-muted text-muted-foreground border-border cursor-not-allowed"
+            : "bg-card text-foreground border-primary hover:bg-muted"
         }`}
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
@@ -292,7 +294,7 @@ export default function BountiesPage() {
       startedDate: "10 May 2021",
       lastUpdated: "15 Sep 2025",
       totalBugsFound: 48,
-      amount: "Up to 2000 SOL",
+      amount: "Up to 20.00 SOL",
     },
     {
       id: "2",
@@ -303,7 +305,7 @@ export default function BountiesPage() {
       startedDate: "10 May 2021",
       lastUpdated: "15 Sep 2025",
       totalBugsFound: 48,
-      amount: "Up to 2000 SOL",
+      amount: "Up to 20.00 SOL",
     },
     {
       id: "3",
@@ -314,7 +316,7 @@ export default function BountiesPage() {
       startedDate: "10 May 2021",
       lastUpdated: "15 Sep 2025",
       totalBugsFound: 48,
-      amount: "Up to 2000 SOL",
+      amount: "Up to 20.00 SOL",
     },
     {
       id: "4",
@@ -325,7 +327,7 @@ export default function BountiesPage() {
       startedDate: "10 May 2021",
       lastUpdated: "15 Sep 2025",
       totalBugsFound: 48,
-      amount: "Up to 2000 SOL",
+      amount: "Up to 20.00 SOL",
     },
     {
       id: "5",
@@ -336,7 +338,7 @@ export default function BountiesPage() {
       startedDate: "10 May 2021",
       lastUpdated: "15 Sep 2025",
       totalBugsFound: 48,
-      amount: "Up to 2000 SOL",
+      amount: "Up to 20.00 SOL",
     },
   ];
 

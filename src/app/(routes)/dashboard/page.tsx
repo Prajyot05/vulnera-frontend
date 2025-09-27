@@ -139,7 +139,6 @@ export default function UserDashboard() {
       </div>
 
       <div className="space-y-2">
-        <h2 className="text-xl font-semibold">Bounty Earned</h2>
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">Funds Management</h2>
           <Card className="w-1/2">
@@ -197,7 +196,7 @@ export default function UserDashboard() {
 
         {/* Submissions Table */}
         <div className="rounded-md border border-border bg-card">
-          <Table className="rounded-md">
+          <Table className="rounded-md h-60">
             <TableHeader>
               <TableRow className="bg-muted/50">
                 <TableHead className="text-center text-foreground">
@@ -255,7 +254,7 @@ export default function UserDashboard() {
 
           {/* Pagination Controls */}
           {filteredSubmissions.length > 0 && (
-            <div className="mt-4 flex justify-center">
+            <div className="my-4 flex justify-center">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>
