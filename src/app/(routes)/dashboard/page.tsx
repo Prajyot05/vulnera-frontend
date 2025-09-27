@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useMemo } from "react";
+import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   Pagination,
   PaginationContent,
@@ -20,69 +20,97 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input'; // Assuming an Input component exists
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input"; // Assuming an Input component exists
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'; // Assuming Select components exist
+} from "@/components/ui/select"; // Assuming Select components exist
+import { cn } from "@/lib/utils";
 
 // Sample data for user submissions
 const submissions = [
   {
-    company: 'RefRelay', vulnerability: 'Buffer Overflow', status: 'In Process', bounty: 'NULL'
+    company: "RefRelay",
+    vulnerability: "Buffer Overflow",
+    status: "In Process",
+    bounty: "NULL",
   },
   {
-    company: 'Jobforces', vulnerability: 'UI Error', status: 'In Process', bounty: 'NULL'
+    company: "Jobforces",
+    vulnerability: "UI Error",
+    status: "In Process",
+    bounty: "NULL",
   },
   {
-    company: 'Jobforces', vulnerability: 'UI Error', status: 'In Process', bounty: 'NULL'
+    company: "Jobforces",
+    vulnerability: "UI Error",
+    status: "In Process",
+    bounty: "NULL",
   },
   {
-    company: 'TechBang', vulnerability: 'Cross-Site Scripting', status: 'Approved', bounty: '5 SOL'
+    company: "TechBang",
+    vulnerability: "Cross-Site Scripting",
+    status: "Approved",
+    bounty: "5 SOL",
   },
   {
-    company: 'TechBang', vulnerability: 'Buffer Overflow', status: 'Approved', bounty: '5 SOL'
+    company: "TechBang",
+    vulnerability: "Buffer Overflow",
+    status: "Approved",
+    bounty: "5 SOL",
   },
   {
-    company: 'Cybersect', vulnerability: 'UI Error', status: 'Rejected', bounty: 'NULL'
+    company: "Cybersect",
+    vulnerability: "UI Error",
+    status: "Rejected",
+    bounty: "NULL",
   },
   {
-    company: 'Cybersect', vulnerability: 'SQL Injection', status: 'Rejected', bounty: 'NULL'
+    company: "Cybersect",
+    vulnerability: "SQL Injection",
+    status: "Rejected",
+    bounty: "NULL",
   },
 ];
 
 // Helper function to get status badge variant
 const getStatusVariant = (status: string) => {
   switch (status) {
-    case 'Approved': return 'success';
-    case 'In Process': return 'outline';
-    case 'Rejected': return 'destructive';
-    default: return 'default';
+    case "Approved":
+      return "success";
+    case "In Process":
+      return "outline";
+    case "Rejected":
+      return "destructive";
+    default:
+      return "default";
   }
 };
 
 // Define the UserDashboard component
 export default function UserDashboard() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Number of items to show per page
 
   // Use useMemo to filter and search the submissions data
   const filteredSubmissions = useMemo(() => {
-    return submissions.filter(submission => {
+    return submissions.filter((submission) => {
       // Status filter logic
-      const statusMatch = statusFilter === 'All' || submission.status === statusFilter;
+      const statusMatch =
+        statusFilter === "All" || submission.status === statusFilter;
 
       // Search term logic (case-insensitive search across company and vulnerability)
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
-      const searchMatch = submission.company.toLowerCase().includes(lowerCaseSearchTerm) ||
-                          submission.vulnerability.toLowerCase().includes(lowerCaseSearchTerm);
+      const searchMatch =
+        submission.company.toLowerCase().includes(lowerCaseSearchTerm) ||
+        submission.vulnerability.toLowerCase().includes(lowerCaseSearchTerm);
 
       return statusMatch && searchMatch;
     });
@@ -98,10 +126,10 @@ export default function UserDashboard() {
 
   // Get unique statuses for the filter dropdown
   const uniqueStatuses = useMemo(() => {
-    const statuses = submissions.map(s => s.status);
-    return ['All', ...Array.from(new Set(statuses))];
+    const statuses = submissions.map((s) => s.status);
+    return ["All", ...Array.from(new Set(statuses))];
   }, []);
-0
+  0;
 
   return (
     <div className="space-y-8">
@@ -114,13 +142,14 @@ export default function UserDashboard() {
         <h2 className="text-xl font-semibold">Bounty Earned</h2>
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">Funds Management</h2>
-          <Card className='w-1/2'>
-            <CardContent className='space-y-0.5'>
+          <Card className="w-1/2">
+            <CardContent className="space-y-0.5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-10px font-medium text-gray-500">Solana Balance</p>
+                  <p className="text-10px font-medium text-gray-500">
+                    Solana Balance
+                  </p>
                   <div className="text-3xl font-bold">20.21334 SOL</div>
-                  <p className="text-s text-muted-foreground">Calculated till this month</p>
                 </div>
                 {/* NOTE: You will need to ensure '/companyfundslogo.png' exists for this to work */}
                 <Image
@@ -140,7 +169,7 @@ export default function UserDashboard() {
 
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Recent Submissions</h2>
-        
+
         {/* Filter and Search Controls */}
         <div className="flex gap-4">
           {/* Search Input */}
@@ -150,7 +179,7 @@ export default function UserDashboard() {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="max-w-sm"
           />
-          
+
           {/* Status Filter Dropdown */}
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger className="w-[180px]">
@@ -164,60 +193,82 @@ export default function UserDashboard() {
               ))}
             </SelectContent>
           </Select>
-          
         </div>
 
         {/* Submissions Table */}
-        <div className="rounded-md border">
-          <Table className='rounded-md'>
+        <div className="rounded-md border border-border bg-card">
+          <Table className="rounded-md">
             <TableHeader>
-              <TableRow className="bg-gray-200">
-                <TableHead className='text-center'>Company</TableHead>
-                <TableHead className='text-center'>Vulnerability</TableHead>
-                <TableHead className="text-center">Status</TableHead>
-                <TableHead className='text-center'>Bounty</TableHead>
+              <TableRow className="bg-muted/50">
+                <TableHead className="text-center text-foreground">
+                  Company
+                </TableHead>
+                <TableHead className="text-center text-foreground">
+                  Vulnerability
+                </TableHead>
+                <TableHead className="text-center text-foreground">
+                  Status
+                </TableHead>
+                <TableHead className="text-center text-foreground">
+                  Bounty
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {paginatedSubmissions.length > 0 ? (
                 paginatedSubmissions.map((submission, index) => (
-                  <TableRow 
+                  <TableRow
                     key={index}
-                    className="cursor-pointer hover:bg-gray-100"
-                    onClick={() => window.location.href = `/dashboard/submission/${index}`}
+                    className="cursor-pointer hover:bg-muted/70 transition-colors"
+                    onClick={() =>
+                      (window.location.href = `/dashboard/submission/${index}`)
+                    }
                   >
-                    <TableCell className="font-medium text-center">{submission.company}</TableCell>
-                    <TableCell className='text-center'>{submission.vulnerability}</TableCell>
+                    <TableCell className="font-medium text-center text-foreground">
+                      {submission.company}
+                    </TableCell>
+                    <TableCell className="text-center text-muted-foreground">
+                      {submission.vulnerability}
+                    </TableCell>
                     <TableCell className="text-center">
                       <Badge variant={getStatusVariant(submission.status)}>
                         {submission.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className='text-center'>{submission.bounty}</TableCell>
+                    <TableCell className="text-center text-foreground">
+                      {submission.bounty}
+                    </TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={4} className="h-24 text-center text-gray-500">
+                  <TableCell
+                    colSpan={4}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     No submissions found matching your criteria.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
-          
+
           {/* Pagination Controls */}
           {filteredSubmissions.length > 0 && (
             <div className="mt-4 flex justify-center">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>
-                    <PaginationPrevious 
-                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                      className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                    <PaginationPrevious
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      className={cn(
+                        currentPage === 1
+                          ? "pointer-events-none opacity-50"
+                          : "cursor-pointer"
+                      )}
                     />
                   </PaginationItem>
-                  
+
                   {[...Array(totalPages)].map((_, i) => (
                     <PaginationItem key={i + 1}>
                       <PaginationLink
@@ -228,11 +279,17 @@ export default function UserDashboard() {
                       </PaginationLink>
                     </PaginationItem>
                   ))}
-                  
+
                   <PaginationItem>
-                    <PaginationNext 
-                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                      className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                    <PaginationNext
+                      onClick={() =>
+                        setCurrentPage((p) => Math.min(totalPages, p + 1))
+                      }
+                      className={cn(
+                        currentPage === totalPages
+                          ? "pointer-events-none opacity-50"
+                          : "cursor-pointer"
+                      )}
                     />
                   </PaginationItem>
                 </PaginationContent>

@@ -4,86 +4,95 @@ import { cn } from "@/lib/utils";
 export default function HowItWorks() {
   const steps = [
     {
-      title: "Companies register",
+      title: "Companies Register",
       description:
-        "Companies register and deposit funds into a secure smart contract to fund their bounty programs.",
+        "Organizations deposit funds into a secure smart contract to back their bounty programs.",
     },
     {
       title: "Users Submit",
-      description: "All submissions and reviews are recorded on-chain for a transparent, tamper-proof history.",
+      description:
+        "All submissions and reviews are recorded on-chain for transparency and trust.",
     },
     {
       title: "Review & Verify",
-      description: "Contributions are reviewed, verified, and decisions are traceable end-to-end.",
+      description:
+        "Submissions are verified in a fair, auditable process that ensures accuracy.",
     },
     {
       title: "Rewards Released",
-      description: "Once approved, rewards are released automatically and remain auditable.",
+      description:
+        "Once approved, rewards are automatically released with blockchain-backed accountability.",
     },
   ];
 
   return (
-    <section className="w-full">
+    <section className="w-full py-20">
       <header className="text-center max-w-2xl mx-auto">
-        <h2 className="text-white text-3xl md:text-4xl font-semibold">How it Works</h2>
-        <p className="text-pretty mt-2 text-[var(--color-muted-foreground)]">A transparent and fair process for all</p>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          How it <span className="text-purple-500">Works</span>
+        </h2>
+        <p className="mt-3 text-muted-foreground text-lg">
+          A transparent, fair, and decentralized process for all.
+        </p>
       </header>
 
-      <div className="relative mt-12">
-        {/* Vertical timeline line */}
+      <div className="relative mt-16">
+        {/* Timeline line */}
         <div
           aria-hidden="true"
-          className="pointer-events-none  absolute left-1/2 top-0 bottom-0 -translate-x-1/2 border-l border-dashed border-[var(--color-border)]"
+          className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 border-l border-dashed border-muted"
         />
 
-        <ol className="relative space-y-10">
+        <ol className="relative space-y-16">
           {steps.map((step, i) => {
             const isLeft = i % 2 === 0;
             return (
-              <li key={i} className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <li
+                key={i}
+                className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center"
+              >
                 {/* Marker */}
-                <div aria-hidden="true" className="absolute left-1/2 -translate-x-1/2 z-10">
-                  <div className="h-9 w-9 rounded-full text-white bg-[#9438FF] transition-shadow duration-300 hover:shadow-[0_0_36px_#9438FF] grid place-items-center text-sm font-semibold">
+                <div
+                  aria-hidden="true"
+                  className="absolute left-1/2 -translate-x-1/2 z-10"
+                >
+                  <div className="h-10 w-10 rounded-full bg-purple-500 text-white grid place-items-center font-bold shadow-lg">
                     {i + 1}
                   </div>
                 </div>
 
-                {/* Left cell */}
+                {/* Left Content */}
                 <div
                   className={cn(
-                    // show this cell on mobile only if it's the one holding content
-                    isLeft ? "flex md:justify-end" : "hidden md:flex md:justify-end",
+                    isLeft
+                      ? "flex md:justify-end"
+                      : "hidden md:flex md:justify-end"
                   )}
                 >
                   {isLeft && (
-                    <div
-                      className={cn(
-                        "w-full md:max-w-[520px] rounded-[var(--radius-lg)] border border-[#9438FF] bg-[var(--color-card)] p-4 md:p-5 shadow-sm",
-                        "md:mr-16", // space from center line
-                      )}
-                    >
-                      <h3 className=" font-semibold">{`${i + 1}. ${step.title}`}</h3>
-                      <p className="mt-2 text-sm leading-6 text-[var(--color-muted-foreground)]">{step.description}</p>
+                    <div className="w-full md:max-w-[500px] rounded-xl border border-purple-500 bg-background p-6 shadow-md md:mr-16">
+                      <h3 className="text-xl font-semibold">{step.title}</h3>
+                      <p className="mt-2 text-muted-foreground">
+                        {step.description}
+                      </p>
                     </div>
                   )}
                 </div>
 
-                {/* Right cell */}
+                {/* Right Content */}
                 <div
                   className={cn(
-                    // show this cell on mobile only if it holds content
-                    !isLeft ? "flex md:justify-start" : "hidden md:flex md:justify-start",
+                    !isLeft
+                      ? "flex md:justify-start"
+                      : "hidden md:flex md:justify-start"
                   )}
                 >
                   {!isLeft && (
-                    <div
-                      className={cn(
-                        "w-full md:max-w-[520px] rounded-[var(--radius-lg)] border border-[#9438FF] bg-[var(--color-card)] p-4 md:p-5 shadow-sm",
-                        "md:ml-16", // space from center line
-                      )}
-                    >
-                      <h3 className=" font-semibold">{`${i + 1}. ${step.title}`}</h3>
-                      <p className="mt-2 text-sm leading-6 text-[var(--color-muted-foreground)]">{step.description}</p>
+                    <div className="w-full md:max-w-[500px] rounded-xl border border-purple-500 bg-background p-6 shadow-md md:ml-16">
+                      <h3 className="text-xl font-semibold">{step.title}</h3>
+                      <p className="mt-2 text-muted-foreground">
+                        {step.description}
+                      </p>
                     </div>
                   )}
                 </div>

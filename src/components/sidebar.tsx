@@ -1,45 +1,45 @@
 // src/app/components/sidebar.tsx
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Home, LayoutDashboard, NotebookPen, Handshake } from 'lucide-react';
-import Image from 'next/image';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Home, LayoutDashboard, NotebookPen } from "lucide-react";
+import Image from "next/image";
 
 const userNavItems = [
-  { name: 'Home', href: '/home', icon: Home },
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Bounties', href: '/bounties', icon: NotebookPen },
-  // { name: 'Be Our Sponsors', href: '/dashboard/sponsors', icon: Handshake },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Bounties", href: "/bounties", icon: NotebookPen },
 ];
 
 const companyNavItems = [
-  { name: 'Home', href: '/home', icon: Home },
-  { name: 'Dashboard', href: '/company/dashboard', icon: LayoutDashboard },
-  { name: 'Bounties', href: '/bounties', icon: NotebookPen },
-  // { name: 'Be Our Sponsors', href: '/dashboard/sponsors', icon: Handshake },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Dashboard", href: "/company/dashboard", icon: LayoutDashboard },
+  { name: "Bounties", href: "/bounties", icon: NotebookPen },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const isCompany = pathname.includes('/company');
+  const isCompany = pathname.includes("/company");
   const navItems = isCompany ? companyNavItems : userNavItems;
 
   return (
-    <nav className="flex h-screen w-64 flex-col justify-start border-r bg-white p-6 shadow-sm">
+    <nav className="flex h-screen w-64 flex-col justify-start border-r border-border bg-background p-6 shadow-sm">
+      {/* Logo */}
       <div className="flex items-center mb-8 w-full">
         <Image
           src="/navlogo.png"
           alt="Vulnera Logo"
-          width={100}
+          width={120}
           height={40}
           priority
           className="object-contain"
         />
       </div>
 
-      <ul className="space-y-2">
+      {/* Nav Links */}
+      <ul className="space-y-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -48,28 +48,19 @@ export function Sidebar() {
               <Link href={item.href} passHref>
                 <div
                   className={cn(
-                    'flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium',
+                    "flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200",
                     isActive
-                      ? 'bg-muted text-foreground'
-                      : 'text-muted-foreground hover:bg-muted',
+                      ? "bg-muted text-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   )}
                 >
                   <Icon
                     className={cn(
-                      'h-5 w-5',
-                      // Conditionally apply purple color to the icon
-                      isActive ? 'text-purple-600' : 'text-gray-500'
+                      "h-5 w-5",
+                      isActive ? "text-primary" : "text-muted-foreground"
                     )}
                   />
-                  <span
-                    className={cn(
-                      'font-medium',
-                      // Keep text color black/foreground when active, and gray otherwise
-                      isActive ? 'text-foreground' : 'text-muted-foreground'
-                    )}
-                  >
-                    {item.name}
-                  </span>
+                  <span>{item.name}</span>
                 </div>
               </Link>
             </li>
